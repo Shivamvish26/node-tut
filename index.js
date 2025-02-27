@@ -106,14 +106,14 @@
 //   console.log(a + data);
 // });
 
-// console.log("Started Now");
+console.log("Started Now");
 
-// setTimeout(() => {
-//   console.log("2 sec log");
-// }, 2000);
+setTimeout(() => {
+  console.log("2 sec log");
+}, 2000);
 
-// setTimeout(() => {
-//   console.log("0 sec log");
-// }, 0);
+setTimeout(() => {
+  console.log("0 sec log");
+}, 0);
 
-// console.log("Finishing Now");
+console.log("Finishing Now");

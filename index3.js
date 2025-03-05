@@ -4,6 +4,8 @@ const app = express();
 
 const publicpath = path.join(__dirname, "Project");
 
+app.set("view engine", "ejs");
+
 // app.use(express.static(publicpath));
 
 // with out extension (user should not know the extension)
@@ -13,6 +15,15 @@ app.get("", (_, resp) => {
 
 app.get("/about", (_, resp) => {
   resp.sendFile(`${publicpath}/about.html`);
+});
+
+app.get("/profile", (_, resp) => {
+  const user = {
+    name: "Shubham Vishwakarma",
+    email: "shubham@test.com",
+    city: "Pune",
+  };
+  resp.render("profile",{user});
 });
 
 app.get("*", (_, resp) => {

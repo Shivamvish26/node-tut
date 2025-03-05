@@ -1,26 +1,25 @@
 const express = require("express");
 const app = express();
+const reqFilter = require("./Middleware/middlware"); //Middleware from other folder
 
-const reqFilter = (req, resp, next) => {
-  // ?age=10 URL
-  //   console.log("Request Filter");
-  if (!req.query.age) {
-    resp.send("Age is mandatory");
-  } else if (req.query.age < 18) {
-    resp.send("Age should be greater than 18");
-  } else {
-    next();
-  }
-};
+const route = express.Router(); //single declear for validation purpose for globally to use this use "route"
 
-app.use(reqFilter);
+route.use(reqFilter);
+// app.use(reqFilter);
 
 app.get("/", (req, resp) => {
   resp.send("Welcome to Home Page");
 });
 
-app.get("/users", (req, resp) => {
-  resp.send("Hello User");
+route.get("/users", reqFilter, (req, resp) => {
+  //Route Level Middleware:- Added to the specific route..[refers notes]
+  resp.send("Welcome User");
 });
+
+app.get("/about", (req, resp) => {
+  resp.send("Welcome to the about page");
+});
+
+app.use("/", route);
 
 app.listen(3000);

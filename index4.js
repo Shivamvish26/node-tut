@@ -11,7 +11,7 @@ app.get("/", (req, resp) => {
   resp.send("Welcome to Home Page");
 });
 
-route.get("/users", reqFilter, (req, resp) => {
+route.get("/users", (req, resp) => {
   //Route Level Middleware:- Added to the specific route..[refers notes]
   resp.send("Welcome User");
 });

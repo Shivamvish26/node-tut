@@ -1,13 +1,18 @@
 const { MongoClient } = require("mongodb");
-const url = 'mongodb://localhost:27017';
-const database = "e-comm";
+const url = "mongodb://localhost:27017";
+const database = "e-commerce";
 const client = new MongoClient(url);
 
 async function getData() {
   let result = await client.connect();
   let db = result.db(database);
-  let collection = db.collection('products')
-  let response = await collection.find({}).toArray()
-  console.log(response)
+  let collection = db.collection("shop");
+  let response = await collection.find({}).toArray();
+  console.log(response);
 }
 getData();
+console.log("Connecting to MongoDB...");
+console.log("Connected to MongoDB");
+console.log("Retrieving data from shop collection...");
+// console.log('Data retrieved successfully:', response);
+// console.log('Error occurred:', error);

@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const dbconnect = require("./Mongo__Connection/mongodb");
+const mongodb = require("mongodb");
 
 app.use(express.json());
 
@@ -30,6 +31,14 @@ app.put("/", async (req, resp) => {
 });
 
 // Delete METHOD
+app.delete("/:id", async (req, resp) => {
+  // console.log(req.params.id);
+  const data = await dbconnect();
+  const result = await data.deleteOne({
+    _id: new mongodb.ObjectId(req.params.id),
+  });
+  resp.send(result);
+});
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");
